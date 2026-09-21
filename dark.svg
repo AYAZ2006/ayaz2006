@@ -81,20 +81,26 @@
   <g mask="url(#revealMask)">
   <text x="30" y="0" class="ascii">
   
-<tspan x="40" y="150" xml:space="preserve">   __  _______  __ _____    __  ___ __  __ ________ </tspan>
-<tspan x="40" y="165" xml:space="preserve">  /  |/  / __ \/ // / _ |  /  |/  //  |/  / __/ __ \</tspan>
-<tspan x="40" y="180" xml:space="preserve"> / /|_/ / /_/ / _  / __ | / /|_/ // /|_/ / _// /_/ /</tspan>
-<tspan x="40" y="195" xml:space="preserve">/_/  /_/\____/_//_/_/ |_|/_/  /_//_/  /_/___/_____/ </tspan>
-<tspan x="40" y="210" xml:space="preserve">                                                    </tspan>
-<tspan x="110" y="225" xml:space="preserve">      _____  _____   ____                           </tspan>
-<tspan x="110" y="240" xml:space="preserve">     / _ | \/ / _ | /_  /                           </tspan>
-<tspan x="110" y="255" xml:space="preserve">    / __ |\  / __ |  / /_                           </tspan>
-<tspan x="110" y="270" xml:space="preserve">   /_/ |_|/_/_/ |_| /___/                           </tspan>
-<tspan x="40" y="285" xml:space="preserve">                                                    </tspan>
-<tspan x="40" y="300" xml:space="preserve">   __  _______  __ ________  ______  ___  _____  __ </tspan>
-<tspan x="40" y="315" xml:space="preserve">  /  |/  / __ \/ // /  _/ / / / __ \/ _ \/  _/ |/ / </tspan>
-<tspan x="40" y="330" xml:space="preserve"> / /|_/ / /_/ / _  // // /_/ / /_/ / // // //    /  </tspan>
-<tspan x="40" y="345" xml:space="preserve">/_/  /_/\____/_//_/___/\____/_____/____/___/_/|_/   </tspan>
+<tspan x="30" y="110" xml:space="preserve">███╗   ███╗ ██████╗ ██╗  ██╗ █████╗ ███╗   ███╗███╗   ███╗███████╗██████╗ </tspan>
+<tspan x="30" y="120" xml:space="preserve">████╗ ████║██╔═══██╗██║  ██║██╔══██╗████╗ ████║████╗ ████║██╔════╝██╔══██╗</tspan>
+<tspan x="30" y="130" xml:space="preserve">██╔████╔██║██║   ██║███████║███████║██╔████╔██║██╔████╔██║█████╗  ██║  ██║</tspan>
+<tspan x="30" y="140" xml:space="preserve">██║╚██╔╝██║██║   ██║██╔══██║██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══╝  ██║  ██║</tspan>
+<tspan x="30" y="150" xml:space="preserve">██║ ╚═╝ ██║╚██████╔╝██║  ██║██║  ██║██║ ╚═╝ ██║██║ ╚═╝ ██║███████╗██████╔╝</tspan>
+<tspan x="30" y="160" xml:space="preserve">╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚═╝╚══════╝╚═════╝ </tspan>
+        
+<tspan x="110" y="190" xml:space="preserve">   █████╗ ██╗   ██╗ █████╗ ███████╗</tspan>
+<tspan x="110" y="200" xml:space="preserve">  ██╔══██╗╚██╗ ██╔╝██╔══██╗╚══███╔╝</tspan>
+<tspan x="110" y="210" xml:space="preserve">  ███████║ ╚████╔╝ ███████║  ███╔╝ </tspan>
+<tspan x="110" y="220" xml:space="preserve">  ██╔══██║  ╚██╔╝  ██╔══██║ ███╔╝  </tspan>
+<tspan x="110" y="230" xml:space="preserve">  ██║  ██║   ██║   ██║  ██║███████╗</tspan>
+<tspan x="110" y="240" xml:space="preserve">  ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝</tspan>
+        
+<tspan x="30" y="270" xml:space="preserve">███╗   ███╗ ██████╗ ██╗  ██╗██╗██╗   ██╗██████╗ ██████╗ ██╗███╗   ██╗</tspan>
+<tspan x="30" y="280" xml:space="preserve">████╗ ████║██╔═══██╗██║  ██║██║██║   ██║██╔══██╗██╔══██╗██║████╗  ██║</tspan>
+<tspan x="30" y="290" xml:space="preserve">██╔████╔██║██║   ██║███████║██║██║   ██║██║  ██║██║  ██║██║██╔██╗ ██║</tspan>
+<tspan x="30" y="300" xml:space="preserve">██║╚██╔╝██║██║   ██║██╔══██║██║██║   ██║██║  ██║██║  ██║██║██║╚██╗██║</tspan>
+<tspan x="30" y="310" xml:space="preserve">██║ ╚═╝ ██║╚██████╔╝██║  ██║██║╚██████╔╝██████╔╝██████╔╝██║██║ ╚████║</tspan>
+<tspan x="30" y="320" xml:space="preserve">╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝</tspan>
 
   </text>
   </g>
