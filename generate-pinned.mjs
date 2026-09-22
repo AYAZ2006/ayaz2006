@@ -165,7 +165,7 @@ function buildCard(repo, index, total, colors) {
   <text x="38" y="55" font-family="${FONT}" font-size="13" fill="${colors.prompt}">$</text>
 
   <clipPath id="${clipId}">
-    <rect x="0" y="0" height="24" width="0">
+    <rect x="54" y="42" height="20" width="0">
       <animate attributeName="width" dur="${total * PER_CARD}s" repeatCount="indefinite"
         keyTimes="0;${typeStart};${typeEnd};1"
         values="0;0;${nameWidth};${nameWidth}"/>
@@ -175,12 +175,14 @@ function buildCard(repo, index, total, colors) {
     <text x="54" y="55" font-family="${FONT}" font-size="13" font-weight="600" fill="${colors.name}">${esc(name)}</text>
   </g>
 
-  <rect x="${54 + nameWidth}" y="43" width="7" height="14" fill="${colors.cursor}">
-    <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
-      keyTimes="0;0.4;0.5;1"/>
+  <g opacity="0">
     <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
       keyTimes="0;${typeEnd};${t2};1" values="0;1;1;0"/>
-  </rect>
+    <rect x="${54 + nameWidth}" y="43" width="7" height="14" fill="${colors.cursor}">
+      <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
+        keyTimes="0;0.4;0.5;1"/>
+    </rect>
+  </g>
 
   <g opacity="0">
     <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
