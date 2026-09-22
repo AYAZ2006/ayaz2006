@@ -28,8 +28,24 @@ jobs:
           OUTPUT_PATH: dist/github-jet.svg
         run: node generate.mjs
 
+      - name: Generate pinned repos SVG (dark)
+        env:
+          GH_USERNAME: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUTPUT_PATH: dist/pinned-dark.svg
+          THEME: dark
+        run: node generate-pinned.mjs
+
+      - name: Generate pinned repos SVG (light)
+        env:
+          GH_USERNAME: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUTPUT_PATH: dist/pinned-light.svg
+          THEME: light
+        run: node generate-pinned.mjs
+
       - name: Commit and push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update jet heatmap SVG"
-          file_pattern: dist/github-jet.svg
+          commit_message: "chore: update jet heatmap and pinned repos SVG"
+          file_pattern: "dist/github-jet.svg dist/pinned-dark.svg dist/pinned-light.svg"
