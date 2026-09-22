@@ -10,4 +10,15 @@
     width="100%"
   />
 </p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/AYAZ2006/AYAZ2006/main/dist/pinned-dark.svg">
+    <img
+      src="https://raw.githubusercontent.com/AYAZ2006/AYAZ2006/main/dist/pinned-light.svg"
+      alt="Pinned Repositories"
+      width="100%"
+    />
+  </picture>
+</p>
 </a>
