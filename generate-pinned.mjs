@@ -27,10 +27,13 @@ const THEME = (process.env.THEME || "dark").toLowerCase();
 const MAX_REPOS = Math.min(Number(process.env.MAX_REPOS) || 4, 6);
 
 const WIDTH = 513;
-const HEIGHT = 170;
-const PER_CARD = 4.5; // seconds each card stays on screen (fade in + hold + fade out)
+const HEIGHT = 205;
+const PER_CARD = 5.5; // seconds each card stays on screen (fade in + hold + fade out)
 const TYPE_DUR = 1.1; // seconds for the name to finish "typing"
 const CHAR_W = 9.2; // approx monospace advance width at the name's font-size
+const DESC_CHAR_W = 6.7; // approx monospace advance width at the description's font-size
+const DESC_MAX_CHARS = 62; // wrap width for description lines
+const DESC_MAX_LINES = 3;
 const FONT = "SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace";
 
 const PALETTES = {
@@ -76,6 +79,7 @@ const QUERY = `
             name
             description
             url
+            homepageUrl
             stargazerCount
             forkCount
             primaryLanguage {
@@ -118,6 +122,46 @@ function truncate(str, max) {
   return str.length > max ? str.slice(0, max - 1).trimEnd() + "…" : str;
 }
 
+function escAttr(str) {
+  return esc(str).replace(/"/g, "&quot;");
+}
+
+// Greedy word-wrap: fills up to maxLines of maxChars each, adds an ellipsis
+// to the last line if the text didn't fully fit.
+function wrapText(str, maxChars, maxLines) {
+  const words = String(str || "").trim().split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = "";
+  let usedWords = 0;
+
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length > maxChars && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = candidate;
+    }
+    usedWords++;
+    if (lines.length === maxLines) break;
+  }
+  if (lines.length < maxLines && current) {
+    lines.push(current);
+  }
+
+  if (usedWords < words.length && lines.length) {
+    const last = lines[lines.length - 1].replace(/[.,;:\s]+$/, "");
+    lines[lines.length - 1] = `${last}…`;
+  }
+  return lines;
+}
+
+function displayUrl(url, max) {
+  if (!url) return "";
+  const stripped = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  return stripped.length > max ? stripped.slice(0, max - 1) + "…" : stripped;
+}
+
 function fmt(n) {
   return Number(n.toFixed(4));
 }
@@ -141,9 +185,14 @@ function buildCard(repo, index, total, colors) {
   const t3 = slotEnd;
 
   const name = truncate(repo.name, 28);
-  const desc = truncate(repo.description || "No description provided", 58);
+  const descLines = wrapText(
+    repo.description || "No description provided",
+    DESC_MAX_CHARS,
+    DESC_MAX_LINES
+  );
   const lang = repo.primaryLanguage;
   const nameWidth = fmt(name.length * CHAR_W);
+  const homepage = repo.homepageUrl && repo.homepageUrl.trim();
 
   const typeStart = fmt(slotStart + 0.01);
   const typeEnd = fmt(slotStart + typeFrac);
@@ -153,13 +202,26 @@ function buildCard(repo, index, total, colors) {
   const cardId = `card${index}`;
   const clipId = `typeclip${index}`;
 
+  const descLinesSvg = descLines
+    .map(
+      (line, i) =>
+        `<text x="38" y="${78 + i * 15}" font-family="${FONT}" font-size="11.5" fill="${colors.desc}">${esc(line)}</text>`
+    )
+    .join("\n    ");
+
+  const linkSvg = homepage
+    ? `<a href="${escAttr(homepage)}" xlink:href="${escAttr(homepage)}" target="_blank">
+      <text x="38" y="128" font-family="${FONT}" font-size="10.5" fill="${colors.prompt}" text-decoration="underline">🔗 ${esc(displayUrl(homepage, 56))}</text>
+    </a>`
+    : "";
+
   return `
 <g id="${cardId}" opacity="0">
   <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
     keyTimes="0;${t0};${t1};${t2};${t3};1"
     values="0;0;1;1;0;0"/>
 
-  <rect x="20" y="24" width="${WIDTH - 40}" height="120" rx="8" ry="8"
+  <rect x="20" y="24" width="${WIDTH - 40}" height="160" rx="8" ry="8"
     fill="${colors.cardBg}" stroke="${colors.border}" stroke-width="1"/>
 
   <text x="38" y="55" font-family="${FONT}" font-size="13" fill="${colors.prompt}">$</text>
@@ -188,15 +250,17 @@ function buildCard(repo, index, total, colors) {
     <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
       keyTimes="0;${descFadeStart};${descFadeEnd};${t2};1"
       values="0;0;1;1;0"/>
-    <text x="38" y="80" font-family="${FONT}" font-size="11.5" fill="${colors.desc}">${esc(desc)}</text>
+    ${descLinesSvg}
 
-    ${lang ? `<circle cx="42" cy="106" r="4" fill="${lang.color || colors.muted}"/>
-    <text x="52" y="110" font-family="${FONT}" font-size="11" fill="${colors.desc}">${esc(lang.name)}</text>` : ""}
+    ${linkSvg}
 
-    <text x="${lang ? 150 : 38}" y="110" font-family="${FONT}" font-size="11" fill="${colors.desc}">★ ${fmtCount(repo.stargazerCount)}</text>
-    <text x="${lang ? 200 : 88}" y="110" font-family="${FONT}" font-size="11" fill="${colors.desc}">⑂ ${fmtCount(repo.forkCount)}</text>
+    ${lang ? `<circle cx="42" cy="150" r="4" fill="${lang.color || colors.muted}"/>
+    <text x="52" y="154" font-family="${FONT}" font-size="11" fill="${colors.desc}">${esc(lang.name)}</text>` : ""}
 
-    <text x="38" y="130" font-family="${FONT}" font-size="10" fill="${colors.muted}">${index + 1}/${total} pinned</text>
+    <text x="${lang ? 150 : 38}" y="154" font-family="${FONT}" font-size="11" fill="${colors.desc}">★ ${fmtCount(repo.stargazerCount)}</text>
+    <text x="${lang ? 200 : 88}" y="154" font-family="${FONT}" font-size="11" fill="${colors.desc}">⑂ ${fmtCount(repo.forkCount)}</text>
+
+    <text x="38" y="174" font-family="${FONT}" font-size="10" fill="${colors.muted}">${index + 1}/${total} pinned</text>
   </g>
 </g>`;
 }
@@ -205,7 +269,7 @@ function buildSvg(repos, colors) {
   const total = repos.length;
   const cards = repos.map((repo, i) => buildCard(repo, i, total, colors)).join("\n");
 
-  return `<svg viewBox="0 0 ${WIDTH} ${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+  return `<svg viewBox="0 0 ${WIDTH} ${HEIGHT}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect x="0" y="0" width="${WIDTH}" height="${HEIGHT}" fill="${colors.bg}"/>
 ${cards}
 </svg>`;
