@@ -2,8 +2,8 @@
 <rect x="0" y="0" width="513" height="205" fill="#ffffff"/>
 
 <g id="card0" opacity="0">
-  <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-    keyTimes="0;0;0.015;0.235;0.25;1"
+  <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+    keyTimes="0;0;0.0037;0.2598;0.2643;1"
     values="0;0;1;1;0;0"/>
 
   <rect x="20" y="24" width="473" height="160" rx="8" ry="8"
@@ -13,8 +13,8 @@
 
   <clipPath id="typeclip0">
     <rect x="54" y="42" height="20" width="0">
-      <animate attributeName="width" dur="22s" repeatCount="indefinite"
-        keyTimes="0;0.01;0.2;1"
+      <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+        keyTimes="0;0.0022;0.0097;1"
         values="0;0;73.6;73.6"/>
     </rect>
   </clipPath>
@@ -23,21 +23,49 @@
   </g>
 
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.2;0.235;1" values="0;1;1;0"/>
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.0097;0.0135;1" values="0;1;1;0"/>
     <rect x="127.6" y="43" width="7" height="14" fill="#1a7f37">
       <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
         keyTimes="0;0.4;0.5;1"/>
     </rect>
   </g>
 
+  <clipPath id="typeclip0-line0">
+      <rect x="38" y="66" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.0135;0.0716;1"
+          values="0;0;415.4;415.4"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip0-line0)">
+      <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">A fully responsive web app to find the best EV charging routes</text>
+    </g>
+    <clipPath id="typeclip0-line1">
+      <rect x="38" y="81" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.0754;0.1288;1"
+          values="0;0;381.9;381.9"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip0-line1)">
+      <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">with turn-by-turn navigation, real-time traffic info, and</text>
+    </g>
+    <clipPath id="typeclip0-line2">
+      <rect x="38" y="96" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.1325;0.1916;1"
+          values="0;0;422.1;422.1"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip0-line2)">
+      <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">smart station discovery. Built with modern React libraries and…</text>
+    </g>
+
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.2;0.23;0.235;1"
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.1953;0.1998;0.2598;1"
       values="0;0;1;1;0"/>
-    <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">A fully responsive web app to find the best EV charging routes</text>
-    <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">with turn-by-turn navigation, real-time traffic info, and</text>
-    <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">smart station discovery. Built with modern React libraries and…</text>
 
     <a href="https://ev-route-finder.vercel.app/" xlink:href="https://ev-route-finder.vercel.app/" target="_blank">
       <text x="38" y="128" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" fill="#0969da" text-decoration="underline">🔗 ev-route-finder.vercel.app</text>
@@ -51,11 +79,20 @@
 
     <text x="38" y="174" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" fill="#6e7781">1/4 pinned</text>
   </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.1953;0.2598;1" values="0;1;1;0"/>
+    <rect x="460.1" y="97" width="6" height="13" fill="#1a7f37">
+      <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
+        keyTimes="0;0.4;0.5;1"/>
+    </rect>
+  </g>
 </g>
 
 <g id="card1" opacity="0">
-  <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-    keyTimes="0;0.25;0.265;0.485;0.5;1"
+  <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+    keyTimes="0;0.2643;0.268;0.5082;0.5127;1"
     values="0;0;1;1;0;0"/>
 
   <rect x="20" y="24" width="473" height="160" rx="8" ry="8"
@@ -65,8 +102,8 @@
 
   <clipPath id="typeclip1">
     <rect x="54" y="42" height="20" width="0">
-      <animate attributeName="width" dur="22s" repeatCount="indefinite"
-        keyTimes="0;0.26;0.45;1"
+      <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+        keyTimes="0;0.2665;0.2834;1"
         values="0;0;165.6;165.6"/>
     </rect>
   </clipPath>
@@ -75,21 +112,49 @@
   </g>
 
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.45;0.485;1" values="0;1;1;0"/>
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.2834;0.2872;1" values="0;1;1;0"/>
     <rect x="219.6" y="43" width="7" height="14" fill="#1a7f37">
       <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
         keyTimes="0;0.4;0.5;1"/>
     </rect>
   </g>
 
+  <clipPath id="typeclip1-line0">
+      <rect x="38" y="66" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.2872;0.3425;1"
+          values="0;0;395.3;395.3"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip1-line0)">
+      <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">Full-stack job listing platform supporting two user roles —</text>
+    </g>
+    <clipPath id="typeclip1-line1">
+      <rect x="38" y="81" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.3462;0.4024;1"
+          values="0;0;402;402"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip1-line1)">
+      <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">job seekers who search and apply for openings, and employers</text>
+    </g>
+    <clipPath id="typeclip1-line2">
+      <rect x="38" y="96" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.4062;0.4399;1"
+          values="0;0;241.2;241.2"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip1-line2)">
+      <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">who post jobs and manage applicants.</text>
+    </g>
+
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.45;0.48;0.485;1"
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.4437;0.4482;0.5082;1"
       values="0;0;1;1;0"/>
-    <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">Full-stack job listing platform supporting two user roles —</text>
-    <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">job seekers who search and apply for openings, and employers</text>
-    <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">who post jobs and manage applicants.</text>
 
     <a href="https://jobleloo.vercel.app/" xlink:href="https://jobleloo.vercel.app/" target="_blank">
       <text x="38" y="128" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" fill="#0969da" text-decoration="underline">🔗 jobleloo.vercel.app</text>
@@ -103,11 +168,20 @@
 
     <text x="38" y="174" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" fill="#6e7781">2/4 pinned</text>
   </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.4437;0.5082;1" values="0;1;1;0"/>
+    <rect x="279.2" y="97" width="6" height="13" fill="#1a7f37">
+      <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
+        keyTimes="0;0.4;0.5;1"/>
+    </rect>
+  </g>
 </g>
 
 <g id="card2" opacity="0">
-  <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-    keyTimes="0;0.5;0.515;0.735;0.75;1"
+  <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+    keyTimes="0;0.5127;0.5164;0.7706;0.7751;1"
     values="0;0;1;1;0;0"/>
 
   <rect x="20" y="24" width="473" height="160" rx="8" ry="8"
@@ -117,8 +191,8 @@
 
   <clipPath id="typeclip2">
     <rect x="54" y="42" height="20" width="0">
-      <animate attributeName="width" dur="22s" repeatCount="indefinite"
-        keyTimes="0;0.51;0.7;1"
+      <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+        keyTimes="0;0.5149;0.5252;1"
         values="0;0;101.2;101.2"/>
     </rect>
   </clipPath>
@@ -127,21 +201,49 @@
   </g>
 
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.7;0.735;1" values="0;1;1;0"/>
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.5252;0.529;1" values="0;1;1;0"/>
     <rect x="155.2" y="43" width="7" height="14" fill="#1a7f37">
       <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
         keyTimes="0;0.4;0.5;1"/>
     </rect>
   </g>
 
+  <clipPath id="typeclip2-line0">
+      <rect x="38" y="66" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.529;0.5852;1"
+          values="0;0;402;402"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip2-line0)">
+      <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">Full-stack platform for internship certificate distribution:</text>
+    </g>
+    <clipPath id="typeclip2-line1">
+      <rect x="38" y="81" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.5889;0.6414;1"
+          values="0;0;375.2;375.2"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip2-line1)">
+      <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">organizations bulk-upload intern data via CSV/Excel, and</text>
+    </g>
+    <clipPath id="typeclip2-line2">
+      <rect x="38" y="96" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.6452;0.7023;1"
+          values="0;0;408.7;408.7"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip2-line2)">
+      <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">interns can look up and download their verified certificates.</text>
+    </g>
+
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.7;0.73;0.735;1"
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.7061;0.7106;0.7706;1"
       values="0;0;1;1;0"/>
-    <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">Full-stack platform for internship certificate distribution:</text>
-    <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">organizations bulk-upload intern data via CSV/Excel, and</text>
-    <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">interns can look up and download their verified certificates.</text>
 
     <a href="https://certifyy-hub.vercel.app" xlink:href="https://certifyy-hub.vercel.app" target="_blank">
       <text x="38" y="128" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" fill="#0969da" text-decoration="underline">🔗 certifyy-hub.vercel.app</text>
@@ -155,11 +257,20 @@
 
     <text x="38" y="174" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" fill="#6e7781">3/4 pinned</text>
   </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.7061;0.7706;1" values="0;1;1;0"/>
+    <rect x="446.7" y="97" width="6" height="13" fill="#1a7f37">
+      <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
+        keyTimes="0;0.4;0.5;1"/>
+    </rect>
+  </g>
 </g>
 
 <g id="card3" opacity="0">
-  <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-    keyTimes="0;0.75;0.765;0.985;1;1"
+  <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+    keyTimes="0;0.7751;0.7788;0.9955;1;1"
     values="0;0;1;1;0;0"/>
 
   <rect x="20" y="24" width="473" height="160" rx="8" ry="8"
@@ -169,8 +280,8 @@
 
   <clipPath id="typeclip3">
     <rect x="54" y="42" height="20" width="0">
-      <animate attributeName="width" dur="22s" repeatCount="indefinite"
-        keyTimes="0;0.76;0.95;1"
+      <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+        keyTimes="0;0.7773;0.7867;1"
         values="0;0;92;92"/>
     </rect>
   </clipPath>
@@ -179,21 +290,49 @@
   </g>
 
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.95;0.985;1" values="0;1;1;0"/>
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.7867;0.7904;1" values="0;1;1;0"/>
     <rect x="146" y="43" width="7" height="14" fill="#1a7f37">
       <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
         keyTimes="0;0.4;0.5;1"/>
     </rect>
   </g>
 
+  <clipPath id="typeclip3-line0">
+      <rect x="38" y="66" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.7904;0.8457;1"
+          values="0;0;395.3;395.3"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip3-line0)">
+      <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">An end-to-end claims automation platform that automatically</text>
+    </g>
+    <clipPath id="typeclip3-line1">
+      <rect x="38" y="81" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.8495;0.902;1"
+          values="0;0;375.2;375.2"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip3-line1)">
+      <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">verifies, validates, and processes insurance claims from</text>
+    </g>
+    <clipPath id="typeclip3-line2">
+      <rect x="38" y="96" height="18" width="0">
+        <animate attributeName="width" dur="66.68750000000001s" repeatCount="indefinite"
+          keyTimes="0;0.9057;0.9273;1"
+          values="0;0;154.1;154.1"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#typeclip3-line2)">
+      <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">submission to checkout.</text>
+    </g>
+
   <g opacity="0">
-    <animate attributeName="opacity" dur="22s" repeatCount="indefinite"
-      keyTimes="0;0.95;0.98;0.985;1"
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.931;0.9355;0.9955;1"
       values="0;0;1;1;0"/>
-    <text x="38" y="78" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">An end-to-end claims automation platform that automatically</text>
-    <text x="38" y="93" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">verifies, validates, and processes insurance claims from</text>
-    <text x="38" y="108" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" fill="#57606a">submission to checkout.</text>
 
     <a href="https://claim-brain.vercel.app" xlink:href="https://claim-brain.vercel.app" target="_blank">
       <text x="38" y="128" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" fill="#0969da" text-decoration="underline">🔗 claim-brain.vercel.app</text>
@@ -206,6 +345,15 @@
     <text x="200" y="154" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="11" fill="#57606a">⑂ 0</text>
 
     <text x="38" y="174" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" fill="#6e7781">4/4 pinned</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" dur="66.68750000000001s" repeatCount="indefinite"
+      keyTimes="0;0.931;0.9955;1" values="0;1;1;0"/>
+    <rect x="192.1" y="97" width="6" height="13" fill="#1a7f37">
+      <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
+        keyTimes="0;0.4;0.5;1"/>
+    </rect>
   </g>
 </g>
 </svg>
