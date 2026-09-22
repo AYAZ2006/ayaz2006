@@ -3,9 +3,10 @@
  * Generates an animated "pinned repos" terminal-style SVG carousel using
  * a GitHub user's REAL pinned repositories (via GraphQL).
  *
- * Cards crossfade one after another; each repo name types out character
- * by character, then the description fades in, then a blinking cursor
- * sits at the end until the next card takes over.
+ * Cards crossfade one after another. Each repo name, then its full
+ * description (wrapped across up to 3 lines), types out slowly and
+ * sequentially, character by character. Once fully typed, the card holds
+ * still for a few seconds before crossfading into the next one.
  *
  * Env vars:
  *   GH_USERNAME  - GitHub login to fetch pinned repos for (required)
@@ -28,8 +29,13 @@ const MAX_REPOS = Math.min(Number(process.env.MAX_REPOS) || 4, 6);
 
 const WIDTH = 513;
 const HEIGHT = 205;
-const PER_CARD = 5.5; // seconds each card stays on screen (fade in + hold + fade out)
-const TYPE_DUR = 1.1; // seconds for the name to finish "typing"
+const TYPE_CPS = 16; // characters typed per second — deliberately slow/readable
+const TYPE_DELAY = 0.15; // pause after a card appears before typing starts
+const LINE_GAP = 0.25; // pause between the name finishing and each subsequent line starting
+const META_FADE = 0.3; // seconds for language/stars/link to fade in once typing is done
+const HOLD_DUR = 4; // seconds the fully-typed card stays still before the next one takes over
+const FADE_IN = 0.25;
+const FADE_OUT = 0.3;
 const CHAR_W = 9.2; // approx monospace advance width at the name's font-size
 const DESC_CHAR_W = 6.7; // approx monospace advance width at the description's font-size
 const DESC_MAX_CHARS = 62; // wrap width for description lines
@@ -171,19 +177,7 @@ function fmtCount(n) {
   return String(n);
 }
 
-function buildCard(repo, index, total, colors) {
-  const slotStart = index / total;
-  const slotEnd = (index + 1) / total;
-  const fadeIn = 0.06; // fraction of PER_CARD spent fading in
-  const fadeOut = 0.06;
-  const typeFrac = TYPE_DUR / PER_CARD;
-
-  // keyTimes for this card's opacity: hidden -> fade in -> hold -> fade out -> hidden
-  const t0 = slotStart;
-  const t1 = fmt(slotStart + fadeIn / total);
-  const t2 = fmt(slotEnd - fadeOut / total);
-  const t3 = slotEnd;
-
+function prepareCard(repo, index, total) {
   const name = truncate(repo.name, 28);
   const descLines = wrapText(
     repo.description || "No description provided",
@@ -192,22 +186,82 @@ function buildCard(repo, index, total, colors) {
   );
   const lang = repo.primaryLanguage;
   const nameWidth = fmt(name.length * CHAR_W);
+  const descLineWidths = descLines.map((l) => fmt(l.length * DESC_CHAR_W));
   const homepage = repo.homepageUrl && repo.homepageUrl.trim();
 
-  const typeStart = fmt(slotStart + 0.01);
-  const typeEnd = fmt(slotStart + typeFrac);
-  const descFadeStart = fmt(typeEnd);
-  const descFadeEnd = fmt(typeEnd + 0.03);
+  // Lay out, in local seconds from this card's own start, when each piece
+  // of text begins/finishes typing.
+  const nameStart = TYPE_DELAY;
+  const nameEnd = nameStart + name.length / TYPE_CPS;
+
+  const lineStarts = [];
+  const lineEnds = [];
+  let cursor = nameEnd + LINE_GAP;
+  for (const line of descLines) {
+    const start = cursor;
+    const end = start + line.length / TYPE_CPS;
+    lineStarts.push(start);
+    lineEnds.push(end);
+    cursor = end + LINE_GAP;
+  }
+  const lastTypeEnd = descLines.length ? lineEnds[lineEnds.length - 1] : nameEnd;
+
+  const metaStart = lastTypeEnd + LINE_GAP;
+  const metaEnd = metaStart + META_FADE;
+  const holdEnd = metaEnd + HOLD_DUR;
+  const dCard = holdEnd + FADE_OUT;
+
+  return {
+    index,
+    total,
+    repo,
+    name,
+    descLines,
+    descLineWidths,
+    lang,
+    nameWidth,
+    homepage,
+    t: { nameStart, nameEnd, lineStarts, lineEnds, metaStart, metaEnd, holdEnd },
+    dCard,
+  };
+}
+
+function buildCard(card, absStart, totalDur, colors) {
+  const { index, total, repo, name, descLines, descLineWidths, lang, nameWidth, homepage, t, dCard } = card;
+  const frac = (localSec) => fmt((absStart + localSec) / totalDur);
 
   const cardId = `card${index}`;
   const clipId = `typeclip${index}`;
 
+  // Card visibility: hidden -> fade in -> stay visible for its whole
+  // typing+hold duration -> fade out -> hidden.
+  const vT0 = frac(0);
+  const vT1 = frac(FADE_IN);
+  const vT2 = frac(dCard - FADE_OUT);
+  const vT3 = frac(dCard);
+
   const descLinesSvg = descLines
-    .map(
-      (line, i) =>
-        `<text x="38" y="${78 + i * 15}" font-family="${FONT}" font-size="11.5" fill="${colors.desc}">${esc(line)}</text>`
-    )
+    .map((line, i) => {
+      const lineClipId = `${clipId}-line${i}`;
+      const y = 78 + i * 15;
+      const lineStart = frac(t.lineStarts[i]);
+      const lineEnd = frac(t.lineEnds[i]);
+      return `<clipPath id="${lineClipId}">
+      <rect x="38" y="${y - 12}" height="18" width="0">
+        <animate attributeName="width" dur="${totalDur}s" repeatCount="indefinite"
+          keyTimes="0;${lineStart};${lineEnd};1"
+          values="0;0;${descLineWidths[i]};${descLineWidths[i]}"/>
+      </rect>
+    </clipPath>
+    <g clip-path="url(#${lineClipId})">
+      <text x="38" y="${y}" font-family="${FONT}" font-size="11.5" fill="${colors.desc}">${esc(line)}</text>
+    </g>`;
+    })
     .join("\n    ");
+
+  const lastLineIdx = descLines.length - 1;
+  const lastLineWidth = lastLineIdx >= 0 ? descLineWidths[lastLineIdx] : 0;
+  const lastLineY = lastLineIdx >= 0 ? 78 + lastLineIdx * 15 : 55;
 
   const linkSvg = homepage
     ? `<a href="${escAttr(homepage)}" xlink:href="${escAttr(homepage)}" target="_blank">
@@ -217,8 +271,8 @@ function buildCard(repo, index, total, colors) {
 
   return `
 <g id="${cardId}" opacity="0">
-  <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
-    keyTimes="0;${t0};${t1};${t2};${t3};1"
+  <animate attributeName="opacity" dur="${totalDur}s" repeatCount="indefinite"
+    keyTimes="0;${vT0};${vT1};${vT2};${vT3};1"
     values="0;0;1;1;0;0"/>
 
   <rect x="20" y="24" width="${WIDTH - 40}" height="160" rx="8" ry="8"
@@ -228,8 +282,8 @@ function buildCard(repo, index, total, colors) {
 
   <clipPath id="${clipId}">
     <rect x="54" y="42" height="20" width="0">
-      <animate attributeName="width" dur="${total * PER_CARD}s" repeatCount="indefinite"
-        keyTimes="0;${typeStart};${typeEnd};1"
+      <animate attributeName="width" dur="${totalDur}s" repeatCount="indefinite"
+        keyTimes="0;${frac(t.nameStart)};${frac(t.nameEnd)};1"
         values="0;0;${nameWidth};${nameWidth}"/>
     </rect>
   </clipPath>
@@ -238,19 +292,20 @@ function buildCard(repo, index, total, colors) {
   </g>
 
   <g opacity="0">
-    <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
-      keyTimes="0;${typeEnd};${t2};1" values="0;1;1;0"/>
+    <animate attributeName="opacity" dur="${totalDur}s" repeatCount="indefinite"
+      keyTimes="0;${frac(t.nameEnd)};${frac(t.lineStarts[0] ?? t.nameEnd)};1" values="0;1;1;0"/>
     <rect x="${54 + nameWidth}" y="43" width="7" height="14" fill="${colors.cursor}">
       <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
         keyTimes="0;0.4;0.5;1"/>
     </rect>
   </g>
 
+  ${descLinesSvg}
+
   <g opacity="0">
-    <animate attributeName="opacity" dur="${total * PER_CARD}s" repeatCount="indefinite"
-      keyTimes="0;${descFadeStart};${descFadeEnd};${t2};1"
+    <animate attributeName="opacity" dur="${totalDur}s" repeatCount="indefinite"
+      keyTimes="0;${frac(t.metaStart)};${frac(t.metaEnd)};${vT2};1"
       values="0;0;1;1;0"/>
-    ${descLinesSvg}
 
     ${linkSvg}
 
@@ -262,12 +317,33 @@ function buildCard(repo, index, total, colors) {
 
     <text x="38" y="174" font-family="${FONT}" font-size="10" fill="${colors.muted}">${index + 1}/${total} pinned</text>
   </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" dur="${totalDur}s" repeatCount="indefinite"
+      keyTimes="0;${frac(t.metaStart)};${vT2};1" values="0;1;1;0"/>
+    <rect x="${38 + lastLineWidth}" y="${lastLineY - 11}" width="6" height="13" fill="${colors.cursor}">
+      <animate attributeName="opacity" dur="0.9s" repeatCount="indefinite" values="1;1;0;0"
+        keyTimes="0;0.4;0.5;1"/>
+    </rect>
+  </g>
 </g>`;
 }
 
 function buildSvg(repos, colors) {
   const total = repos.length;
-  const cards = repos.map((repo, i) => buildCard(repo, i, total, colors)).join("\n");
+  const prepared = repos.map((repo, i) => prepareCard(repo, i, total));
+
+  let acc = 0;
+  const absStarts = prepared.map((c) => {
+    const start = acc;
+    acc += c.dCard;
+    return start;
+  });
+  const totalDur = acc;
+
+  const cards = prepared
+    .map((c, i) => buildCard(c, absStarts[i], totalDur, colors))
+    .join("\n");
 
   return `<svg viewBox="0 0 ${WIDTH} ${HEIGHT}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect x="0" y="0" width="${WIDTH}" height="${HEIGHT}" fill="${colors.bg}"/>
